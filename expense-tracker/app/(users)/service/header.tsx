@@ -14,6 +14,12 @@ const Header=()=>{
                 <Link  href="/about">about</Link>
             </li>
             <li>
+                <Link  href="/clientComp">Client</Link>
+            </li>
+            <li>
+                <Link  href="/serverComp">server</Link>
+            </li>
+            <li>
                 <Link  href="/contact">contact</Link>
             </li>
         </ul>
