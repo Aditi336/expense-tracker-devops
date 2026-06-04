@@ -1,6 +1,5 @@
 import Link from "next/link"
-
-export const Notfound=async()=>{
+ const Notfound=async()=>{
     return(
         <>
         <h2>This page is not found</h2>
@@ -8,3 +7,4 @@ export const Notfound=async()=>{
         </>
     )
 }
+export default  Notfound;

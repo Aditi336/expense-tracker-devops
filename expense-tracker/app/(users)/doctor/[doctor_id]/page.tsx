@@ -1,3 +1,4 @@
+import { notFound } from "next/navigation"
 import {getAllDoctors} from "../../static/page"
 interface doctorProps{
         doctor_id:number
@@ -10,12 +11,17 @@ const DoctorById=async(props:any)=>{
     // doctorId=Number(doctorId)
     const doctorss=(await getAllDoctors()) as doctorProps[];
     const ID= Number(doctorId.doctor_id)
+
+    const filtered_doc=doctorss
+            .filter(doc=>doc.doctor_id===ID)
+    if(filtered_doc.length==0){
+        return notFound();
+    }
     
    return(
         <>
         <div>
-            {doctorss
-            .filter(doc=>doc.doctor_id===ID)
+            {filtered_doc
             .map((doc:doctorProps)=>{
                 return (<ul key={doc.doctor_id}>
                     <li>{doc.doctor_name}</li>
