@@ -1,4 +1,12 @@
 NEXT.JS
 
-1. to create nextjs new app
+- to create nextjs new app
     # 
+- To install the mysql2
+    # npm install mysql2 
+- to start mysql services
+    # brew services start mysql
+- To connect run:
+    # mysql -u root
+- to run the nextjs app
+    # npm run dev

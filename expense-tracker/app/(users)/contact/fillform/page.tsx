@@ -1,11 +1,14 @@
 "use client";
+import { useActionState } from "react";
 import {contactAction} from "./contact.action";
 const ContactForm=()=>{
+
+    const [state,formAction,isPending]=useActionState(contactAction,null);
     return(
         <>
         <div>
             <h2>Contact page</h2>
-            <form action={contactAction}>
+            <form action={formAction}>
                 <div>
                     <label htmlFor="fullname">Name</label>
                     <input id="fullname" type="text" name="fullname" required placeholder="enter you name"></input>
