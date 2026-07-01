@@ -1,19 +1,22 @@
 "use server";
 import { db } from "../../../../config/db";
-export const contactAction = async (previousState,formData) => {
+import { redirect } from "next/navigation";
+export const contactAction = async (prevState, formData) => {
     try {
-        const { fullname, emailID, msgContent } = Object.fromEntries(formData);
+        const fullname = formData.get("fullname");
+        const emailID = formData.get("emailID");
+        const msgContent = formData.get("msgContent");
 
         await db.execute(
-            `
-       insert into contact_form (name,email,message) values (?,?,?)`,
+            "insert into contact_form (name,email,message) values (?,?,?)",
             [fullname, emailID, msgContent]
+        );
 
-        )
-        return {success:true, message:"data updated successfully"}
+        // return { success: true, message: "Data updated successfully" };
+        redirect("/")
     } catch (err) {
-        console.log(err);
-        return {success:false, message:"data not updated  "}
-
+        if(err.message==="NEXT_REDIRECT"){throw err;}
+        console.error(err);
+        return { success: false, message: "Data not updated" };
     }
-}
+};
